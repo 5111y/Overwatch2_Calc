@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오버워치 대리 가격 계산기</title>
+    <title>오버워치 계산기</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,8 +13,8 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>🎮 오버워치 대리 가격 계산기</h1>
-            <p class="subtitle">티어와 판수를 입력하여 대리 비용을 계산하세요</p>
+            <h1>🎮 오버워치 계산기</h1>
+            <p class="subtitle">티어와 판수를 입력하여 비용을 계산하세요</p>
         </header>
 
         <main class="main-content">
@@ -23,7 +23,7 @@
                 <h2>계산 방식 선택</h2>
                 <div class="calc-type-buttons">
                     <button class="calc-type-btn active" data-type="win">승당제</button>
-                    <button class="calc-type-btn" data-type="game">판수제</button>
+                    <button class="calc-type-btn" data-type="game">승패무관</button>
                     <button class="calc-type-btn" data-type="tier">티어제</button>
                     <button class="calc-type-btn" data-type="placement">배치고사</button>
                 </div>
@@ -89,40 +89,8 @@
 
                 <!-- 티어제 입력 -->
                 <div class="input-group hidden" id="tier-input-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="tier-range-checkbox">
-                        <span>티어 범위 계산 (예: 골드 → 플래티넘)</span>
-                    </label>
-                    
-                    <!-- 일반 티어제 -->
-                    <div id="tier-normal-inputs">
-                        <label for="tier-tier">티어 선택</label>
-                        <select id="tier-tier" class="tier-select">
-                            <option value="bronze-silver">브론즈/실버</option>
-                            <option value="gold">골드</option>
-                            <option value="platinum">플래티넘</option>
-                            <option value="diamond-5-4">다이아 5~4티어</option>
-                            <option value="diamond-3-1">다이아 3~1티어</option>
-                            <option value="master-5-4">마스터 5~4티어</option>
-                            <option value="master-3-2">마스터 3~2티어</option>
-                            <option value="master-1">마스터 1티어</option>
-                            <option value="gm-5">그마 5티어</option>
-                            <option value="gm-4">그마 4티어</option>
-                            <option value="gm-3">그마 3티어</option>
-                            <option value="gm-2">그마 2티어</option>
-                            <option value="gm-1">그마 1티어</option>
-                            <option value="champion-5">챔피언 5티어</option>
-                            <option value="champion-4">챔피언 4티어</option>
-                            <option value="champion-3">챔피언 3티어 (승당제로 진행)</option>
-                            <option value="champion-2">챔피언 2티어 (승당제로 진행)</option>
-                            <option value="champion-1">챔피언 1티어 (승당제로 진행)</option>
-                        </select>
-                        <label for="tier-count">올릴 티어 수</label>
-                        <input type="number" id="tier-count" class="number-input" min="1" value="1" placeholder="올릴 티어 수를 입력하세요">
-                    </div>
-                    
                     <!-- 티어 범위 계산 -->
-                    <div id="tier-range-inputs" class="hidden">
+                    <div id="tier-range-inputs">
                         <label for="tier-start">시작 티어</label>
                         <select id="tier-start" class="tier-select">
                             <option value="bronze-silver-5">브론즈/실버 5티어</option>
