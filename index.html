@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오버워치 대리 가격 계산기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎮 오버워치 대리 가격 계산기</h1>
+            <p class="subtitle">티어와 판수를 입력하여 대리 비용을 계산하세요</p>
+        </header>
+
+        <main class="main-content">
+            <!-- 계산 방식 선택 -->
+            <section class="calc-section">
+                <h2>계산 방식 선택</h2>
+                <div class="calc-type-buttons">
+                    <button class="calc-type-btn active" data-type="win">승당제</button>
+                    <button class="calc-type-btn" data-type="game">판수제</button>
+                    <button class="calc-type-btn" data-type="tier">티어제</button>
+                    <button class="calc-type-btn" data-type="placement">배치고사</button>
+                </div>
+            </section>
+
+            <!-- 입력 섹션 -->
+            <section class="input-section">
+                <!-- 승당제 입력 -->
+                <div class="input-group" id="win-input-group">
+                    <label for="win-tier">티어 선택</label>
+                    <select id="win-tier" class="tier-select">
+                        <option value="bronze-silver">브론즈/실버</option>
+                        <option value="gold">골드</option>
+                        <option value="platinum">플래티넘</option>
+                        <option value="diamond-5-4">다이아 5~4티어</option>
+                        <option value="diamond-3-1">다이아 3~1티어</option>
+                        <option value="master-5-4">마스터 5~4티어</option>
+                        <option value="master-3-2">마스터 3~2티어</option>
+                        <option value="master-1">마스터 1티어</option>
+                        <option value="gm-5">그마 5티어</option>
+                        <option value="gm-4">그마 4티어</option>
+                        <option value="gm-3">그마 3티어</option>
+                        <option value="gm-2">그마 2티어</option>
+                        <option value="gm-1">그마 1티어</option>
+                        <option value="champion-5">챔피언 5티어</option>
+                        <option value="champion-4">챔피언 4티어</option>
+                        <option value="champion-3">챔피언 3티어</option>
+                        <option value="champion-2">챔피언 2티어</option>
+                        <option value="champion-1">챔피언 1티어</option>
+                    </select>
+                    <label for="win-count">승리 횟수</label>
+                    <input type="number" id="win-count" class="number-input" min="1" value="1" placeholder="승리 횟수를 입력하세요">
+                </div>
+
+                <!-- 판수제 입력 -->
+                <div class="input-group hidden" id="game-input-group">
+                    <label for="game-tier">티어 선택</label>
+                    <select id="game-tier" class="tier-select">
+                        <option value="bronze-silver">브론즈/실버</option>
+                        <option value="gold">골드</option>
+                        <option value="platinum">플래티넘</option>
+                        <option value="diamond">다이아</option>
+                        <option value="master-5-4">마스터 5~4티어</option>
+                        <option value="master-3-1">마스터 3~1티어</option>
+                        <option value="gm-5">그마 5티어</option>
+                        <option value="gm-4">그마 4티어</option>
+                        <option value="gm-3">그마 3티어</option>
+                        <option value="gm-2">그마 2티어</option>
+                        <option value="gm-1">그마 1티어</option>
+                        <option value="champion-5">챔피언 5티어</option>
+                        <option value="champion-4">챔피언 4티어</option>
+                        <option value="champion-3">챔피언 3티어</option>
+                        <option value="champion-2">챔피언 2티어</option>
+                        <option value="champion-1">챔피언 1티어</option>
+                    </select>
+                    <label for="game-count">게임 횟수</label>
+                    <input type="number" id="game-count" class="number-input" min="1" value="1" placeholder="게임 횟수를 입력하세요">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="duo-checkbox">
+                        <span>듀오 (함께 게임)</span>
+                    </label>
+                </div>
+
+                <!-- 티어제 입력 -->
+                <div class="input-group hidden" id="tier-input-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="tier-range-checkbox">
+                        <span>티어 범위 계산 (예: 골드 → 플래티넘)</span>
+                    </label>
+                    
+                    <!-- 일반 티어제 -->
+                    <div id="tier-normal-inputs">
+                        <label for="tier-tier">티어 선택</label>
+                        <select id="tier-tier" class="tier-select">
+                            <option value="bronze-silver">브론즈/실버</option>
+                            <option value="gold">골드</option>
+                            <option value="platinum">플래티넘</option>
+                            <option value="diamond-5-4">다이아 5~4티어</option>
+                            <option value="diamond-3-1">다이아 3~1티어</option>
+                            <option value="master-5-4">마스터 5~4티어</option>
+                            <option value="master-3-2">마스터 3~2티어</option>
+                            <option value="master-1">마스터 1티어</option>
+                            <option value="gm-5">그마 5티어</option>
+                            <option value="gm-4">그마 4티어</option>
+                            <option value="gm-3">그마 3티어</option>
+                            <option value="gm-2">그마 2티어</option>
+                            <option value="gm-1">그마 1티어</option>
+                            <option value="champion-5">챔피언 5티어</option>
+                            <option value="champion-4">챔피언 4티어</option>
+                            <option value="champion-3">챔피언 3티어 (승당제로 진행)</option>
+                            <option value="champion-2">챔피언 2티어 (승당제로 진행)</option>
+                            <option value="champion-1">챔피언 1티어 (승당제로 진행)</option>
+                        </select>
+                        <label for="tier-count">올릴 티어 수</label>
+                        <input type="number" id="tier-count" class="number-input" min="1" value="1" placeholder="올릴 티어 수를 입력하세요">
+                    </div>
+                    
+                    <!-- 티어 범위 계산 -->
+                    <div id="tier-range-inputs" class="hidden">
+                        <label for="tier-start">시작 티어</label>
+                        <select id="tier-start" class="tier-select">
+                            <option value="bronze-silver-5">브론즈/실버 5티어</option>
+                            <option value="bronze-silver-4">브론즈/실버 4티어</option>
+                            <option value="bronze-silver-3">브론즈/실버 3티어</option>
+                            <option value="bronze-silver-2">브론즈/실버 2티어</option>
+                            <option value="bronze-silver-1">브론즈/실버 1티어</option>
+                            <option value="gold-5">골드 5티어</option>
+                            <option value="gold-4">골드 4티어</option>
+                            <option value="gold-3">골드 3티어</option>
+                            <option value="gold-2">골드 2티어</option>
+                            <option value="gold-1">골드 1티어</option>
+                            <option value="platinum-5">플래티넘 5티어</option>
+                            <option value="platinum-4">플래티넘 4티어</option>
+                            <option value="platinum-3">플래티넘 3티어</option>
+                            <option value="platinum-2">플래티넘 2티어</option>
+                            <option value="platinum-1">플래티넘 1티어</option>
+                            <option value="diamond-5">다이아 5티어</option>
+                            <option value="diamond-4">다이아 4티어</option>
+                            <option value="diamond-3">다이아 3티어</option>
+                            <option value="diamond-2">다이아 2티어</option>
+                            <option value="diamond-1">다이아 1티어</option>
+                            <option value="master-5">마스터 5티어</option>
+                            <option value="master-4">마스터 4티어</option>
+                            <option value="master-3">마스터 3티어</option>
+                            <option value="master-2">마스터 2티어</option>
+                            <option value="master-1">마스터 1티어</option>
+                            <option value="gm-5">그마 5티어</option>
+                            <option value="gm-4">그마 4티어</option>
+                            <option value="gm-3">그마 3티어</option>
+                            <option value="gm-2">그마 2티어</option>
+                            <option value="gm-1">그마 1티어</option>
+                            <option value="champion-5">챔피언 5티어</option>
+                            <option value="champion-4">챔피언 4티어</option>
+                        </select>
+                        <label for="tier-end">목표 티어</label>
+                        <select id="tier-end" class="tier-select">
+                            <option value="bronze-silver-5">브론즈/실버 5티어</option>
+                            <option value="bronze-silver-4">브론즈/실버 4티어</option>
+                            <option value="bronze-silver-3">브론즈/실버 3티어</option>
+                            <option value="bronze-silver-2">브론즈/실버 2티어</option>
+                            <option value="bronze-silver-1">브론즈/실버 1티어</option>
+                            <option value="gold-5">골드 5티어</option>
+                            <option value="gold-4">골드 4티어</option>
+                            <option value="gold-3">골드 3티어</option>
+                            <option value="gold-2">골드 2티어</option>
+                            <option value="gold-1">골드 1티어</option>
+                            <option value="platinum-5">플래티넘 5티어</option>
+                            <option value="platinum-4">플래티넘 4티어</option>
+                            <option value="platinum-3">플래티넘 3티어</option>
+                            <option value="platinum-2">플래티넘 2티어</option>
+                            <option value="platinum-1">플래티넘 1티어</option>
+                            <option value="diamond-5">다이아 5티어</option>
+                            <option value="diamond-4">다이아 4티어</option>
+                            <option value="diamond-3">다이아 3티어</option>
+                            <option value="diamond-2">다이아 2티어</option>
+                            <option value="diamond-1">다이아 1티어</option>
+                            <option value="master-5">마스터 5티어</option>
+                            <option value="master-4">마스터 4티어</option>
+                            <option value="master-3">마스터 3티어</option>
+                            <option value="master-2">마스터 2티어</option>
+                            <option value="master-1">마스터 1티어</option>
+                            <option value="gm-5">그마 5티어</option>
+                            <option value="gm-4">그마 4티어</option>
+                            <option value="gm-3">그마 3티어</option>
+                            <option value="gm-2">그마 2티어</option>
+                            <option value="gm-1">그마 1티어</option>
+                            <option value="champion-5">챔피언 5티어</option>
+                            <option value="champion-4">챔피언 4티어</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 배치고사 입력 -->
+                <div class="input-group hidden" id="placement-input-group">
+                    <label for="placement-tier">티어 선택</label>
+                    <select id="placement-tier" class="tier-select">
+                        <option value="bronze-silver-gold-platinum">브실골플</option>
+                        <option value="diamond-5-4">다이아 5~4티어</option>
+                        <option value="diamond-3-1">다이아 3~1티어</option>
+                        <option value="master-5-4">마스터 5~4티어</option>
+                        <option value="master-3-1">마스터 3~1티어</option>
+                        <option value="gm-5">그마 5티어</option>
+                        <option value="gm-4">그마 4티어</option>
+                        <option value="gm-3">그마 3티어</option>
+                        <option value="gm-2">그마 2티어</option>
+                        <option value="gm-1">그마 1티어</option>
+                        <option value="champion-5">챔피언 5티어</option>
+                        <option value="champion-4">챔피언 4티어</option>
+                        <option value="champion-3">챔피언 3티어</option>
+                    </select>
+                    <label for="placement-count">승리 횟수</label>
+                    <input type="number" id="placement-count" class="number-input" min="1" value="1" placeholder="승리 횟수를 입력하세요">
+                </div>
+            </section>
+
+            <!-- 결과 섹션 -->
+            <section class="result-section">
+                <div class="result-card">
+                    <h3>계산 결과</h3>
+                    <div class="result-details">
+                        <div class="result-item">
+                            <span class="result-label">계산 방식:</span>
+                            <span class="result-value" id="result-type">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">티어:</span>
+                            <span class="result-value" id="result-tier">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">수량:</span>
+                            <span class="result-value" id="result-quantity">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">1회당 가격:</span>
+                            <span class="result-value" id="result-unit-price">-</span>
+                        </div>
+                        <div class="result-item total">
+                            <span class="result-label">총 가격:</span>
+                            <span class="result-value" id="result-total">0원</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
